@@ -1,0 +1,14 @@
+C:\dev\interviewRepos\PeopleApi\bin\Debug\netcoreapp2.2\PeopleApi.deps.json
+C:\dev\interviewRepos\PeopleApi\bin\Debug\netcoreapp2.2\PeopleApi.runtimeconfig.json
+C:\dev\interviewRepos\PeopleApi\bin\Debug\netcoreapp2.2\PeopleApi.runtimeconfig.dev.json
+c:\dev\interviewRepos\PeopleApi\bin\Debug\netcoreapp2.2\PeopleApi.dll
+c:\dev\interviewRepos\PeopleApi\bin\Debug\netcoreapp2.2\PeopleApi.pdb
+c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.csprojAssemblyReference.cache
+c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.csproj.CoreCompileInputs.cache
+c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.RazorAssemblyInfo.cache
+c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.RazorAssemblyInfo.cs
+c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.AssemblyInfoInputs.cache
+c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.AssemblyInfo.cs
+c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.RazorTargetAssemblyInfo.cache
+c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.dll
+c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.pdb

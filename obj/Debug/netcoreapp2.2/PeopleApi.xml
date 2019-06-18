@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PeopleApi</name>
+    </assembly>
+    <members>
+        <member name="T:PeopleApi.Controllers.PeopleController">
+            <summary>
+            Controller used to perform CRUD operations on people.
+            </summary>
+        </member>
+        <member name="M:PeopleApi.Controllers.PeopleController.#ctor(PeopleApi.Models.PersonContext)">
+            <summary>
+            Constructor that seeds test data if none exists
+            </summary>
+        </member>
+        <member name="M:PeopleApi.Controllers.PeopleController.Delete(System.Int64)">
+             <summary>
+             Deletes a Person.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 DELETE /People/1
+            
+             </remarks>
+             <param name="id"></param>
+             <returns>The requested Person</returns>
+             <response code="204">Indicates that the person was deleted</response>
+             <response code="404">If the person being deleted doesn't exist</response>    
+        </member>
+        <member name="M:PeopleApi.Controllers.PeopleController.Get">
+             <summary>
+             Gets a list of people.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /People
+            
+             </remarks>
+             <returns>The requested people</returns>
+             <response code="200">Returns the people requested</response>  
+        </member>
+        <member name="M:PeopleApi.Controllers.PeopleController.Get(System.Int64)">
+             <summary>
+             Gets a Person.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /People/1
+            
+             </remarks>
+             <param name="id"></param>
+             <returns>The requested Person</returns>
+             <response code="200">Returns the person requested</response>
+             <response code="404">If the person being requested doesn't exist</response>          
+        </member>
+        <member name="M:PeopleApi.Controllers.PeopleController.Post(PeopleApi.Models.Person)">
+             <summary>
+             Creates a Person.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /People
+                 {
+                    "FirstName": "Big",
+                    "LastName": "Bird",
+                    "Address": "123 Sesame St",
+                    "City": "New York City",
+                    "State": "New York",
+                    "Zip": "10128"
+                 }
+            
+             </remarks>
+             <param name="person"></param>
+             <returns>A newly created Person</returns>
+             <response code="201">Returns the newly created person</response>
+             <response code="400">If the person is null</response>  
+        </member>
+        <member name="M:PeopleApi.Controllers.PeopleController.Put(System.Int64,PeopleApi.Models.Person)">
+             <summary>
+             Updates a Person.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 PUT /People/1
+                 {
+                    "FirstName": "Big",
+                    "LastName": "Bird",
+                    "Address": "123 Sesame St",
+                    "City": "New York City",
+                    "State": "New York",
+                    "Zip": "10128"
+                 }
+            
+             </remarks>        
+             <param name="id"></param>
+             <param name="person"></param>
+             <returns>An updated Person</returns>
+             <response code="204">Indicates that the person was updated</response>
+             <response code="400">If the person cannot be found</response>  
+        </member>
+    </members>
+</doc>

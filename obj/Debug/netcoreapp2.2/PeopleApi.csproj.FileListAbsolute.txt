@@ -12,3 +12,5 @@ c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.AssemblyInfo.c
 c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.RazorTargetAssemblyInfo.cache
 c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.dll
 c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.pdb
+c:\dev\interviewRepos\PeopleApi\bin\Debug\netcoreapp2.2\PeopleApi.xml
+c:\dev\interviewRepos\PeopleApi\obj\Debug\netcoreapp2.2\PeopleApi.xml

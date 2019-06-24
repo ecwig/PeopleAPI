@@ -171,5 +171,11 @@ namespace PeopleApi.Controllers
             await _mediator.Send(new UpdatePersonCommand { });
             return NoContent();
         }
+                
+        /*[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Find))]
+        public async Task<IActionResult> Find(Person criteria)
+        {
+            return Ok(await _mediator.Send(new SearchPeopleQuery { Criteria = criteria }));
+        }*/
     }
 }

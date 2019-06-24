@@ -1,9 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using PeopleApi.Models;
 
 namespace PeopleApi
@@ -14,22 +11,15 @@ namespace PeopleApi
         {
             var host = CreateWebHostBuilder(args).Build();
 
-            using (var scope = host.Services.CreateScope())
+            // Create a new scope to retrieve scoped services
+            /*using (var scope = host.Services.CreateScope())
             {
-                var services = scope.ServiceProvider;
+                // Get the dbInitializer
+                var dbInitializer = scope.ServiceProvider.GetRequiredService<DataInitializer>();
 
-                try
-                {
-                    var context = services.GetRequiredService<PersonContext>();
-                    context.Database.Migrate();
-                    SeedData.Initialize(services);
-                }
-                catch (Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred seeding the DB.");
-                }
-            }
+                //Seed data 
+                dbInitializer.InitializeDatabase();
+            }*/
 
             host.Run();
         }

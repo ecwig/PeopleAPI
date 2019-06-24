@@ -8,13 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20190624154012_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190624154012_InitialCreate.Designer.cs" />
-    <Compile Remove="Migrations\20190624154228_InitialCreate.cs" />
-    <Compile Remove="Migrations\20190624154228_InitialCreate.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />

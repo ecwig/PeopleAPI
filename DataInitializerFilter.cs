@@ -1,19 +1,22 @@
 ﻿using Dapper;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using System;
 using System.Data;
 using System.Linq;
 
-namespace PeopleApi.Models
+namespace PeopleApi
 {
-    public class DataInitializer
+    public class DataInitializerFilter : IStartupFilter
     {
         private readonly IDbConnection _dbConnection;
         
-        public DataInitializer(IDbConnection dbConnection)
+        public DataInitializerFilter(IDbConnection dbConnection)
         {
             _dbConnection = dbConnection;
         }
 
-        public void InitializeDatabase()
+        public Action<IApplicationBuilder> Configure(Action<IApplicationBuilder> next)
         {
             //If the dbo.Person table doesn't exist, create it
             var tableExistsQuery = @"SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'Person'";
@@ -37,7 +40,8 @@ namespace PeopleApi.Models
                 ('Oscar', 'Grouch', '123 Sesame St', 'New York', 'NY', '10128')";
 
             if (!(_dbConnection.Query<int>(seedDataExistsQuery).FirstOrDefault() > 0)) _dbConnection.Execute(createSeedData);
-                       
+
+            return next;
         }
     }
 }

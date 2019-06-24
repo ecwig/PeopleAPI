@@ -19,7 +19,7 @@ namespace PeopleApi.Controllers
         private readonly IMediator _mediator;
 
         /// <summary>
-        /// Constructor that seeds test data if none exists
+        /// Constructor that injects Mediator
         /// </summary>
         public PeopleController(IMediator mediator)
         {
@@ -170,12 +170,6 @@ namespace PeopleApi.Controllers
 
             await _mediator.Send(new UpdatePersonCommand { });
             return NoContent();
-        }
-                
-        /*[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Find))]
-        public async Task<IActionResult> Find(Person criteria)
-        {
-            return Ok(await _mediator.Send(new SearchPeopleQuery { Criteria = criteria }));
-        }*/
+        } 
     }
 }

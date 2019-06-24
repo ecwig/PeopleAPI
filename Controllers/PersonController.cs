@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using PeopleApi.Models;
+using MediatR;
+using PeopleApi.Messages.Commands;
+using PeopleApi.Messages.Queries;
 
 namespace PeopleApi.Controllers
 {
@@ -15,30 +16,14 @@ namespace PeopleApi.Controllers
     [ApiController]
     public class PeopleController : ControllerBase
     {
-        private readonly PersonContext _context;
+        private readonly IMediator _mediator;
 
         /// <summary>
         /// Constructor that seeds test data if none exists
         /// </summary>
-        public PeopleController(PersonContext context)
+        public PeopleController(IMediator mediator)
         {
-            _context = context;
-
-            if (_context.People.Count() == 0)
-            {
-                // Create a new Person if collection is empty so that a person always exists
-                _context.People.Add(
-                    new Person 
-                    { 
-                        FirstName = "Bobby", 
-                        LastName = "Boucher",  
-                        Address = "123 Mud Dog Blvd",
-                        City = "South Central",
-                        State = "Louisiana",
-                        Zip = "71111"
-                    });
-                _context.SaveChanges();
-            }
+            _mediator = mediator;
         }
 
         /// <summary>
@@ -58,15 +43,12 @@ namespace PeopleApi.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
         public async Task<IActionResult> Delete(long id)
         {
-            var person = await _context.People.FindAsync(id);
+            var person = await _mediator.Send(new DeletePersonCommand { });
 
             if (person == null)
             {
                 return NotFound();
-            }
-
-            _context.People.Remove(person);
-            await _context.SaveChangesAsync();
+            }           
 
             return NoContent();
         }
@@ -85,7 +67,10 @@ namespace PeopleApi.Controllers
         /// <response code="404">If no people exist</response> 
         [HttpGet]
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
-        public async Task<ActionResult<IEnumerable<Person>>> Get() => await _context.People.ToListAsync();
+        public async Task<ActionResult<IList<Person>>> Get()
+        {
+            return Ok(await _mediator.Send(new GetPeopleQuery()));
+        }
 
         /// <summary>
         /// Gets a Person.
@@ -104,14 +89,14 @@ namespace PeopleApi.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
         public async Task<ActionResult<Person>> Get(long id)
         {
-            var person = await _context.People.FindAsync(id);
+            var person = await _mediator.Send(new GetPersonQuery { Id = id });
 
             if (person == null)
             {
                 return NotFound();
             }
 
-            return person;
+            return Ok(person);
         }
 
         /// <summary>
@@ -139,10 +124,17 @@ namespace PeopleApi.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
         public async Task<ActionResult<Person>> Post(Person person)
         {
-            _context.People.Add(person);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(Get), new { id = person.Id }, person);
+            var result = await _mediator.Send(
+                new AddPersonCommand
+                {
+                    FirstName = person.FirstName,
+                    LastName = person.LastName,
+                    Address = person.Address,
+                    City = person.City,
+                    State = person.State,
+                    Zip = person.Zip
+                });
+            return CreatedAtAction(nameof(Get), new { id = result.Id }, result);
         }
 
         /// <summary>
@@ -176,9 +168,7 @@ namespace PeopleApi.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(person).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
+            await _mediator.Send(new UpdatePersonCommand { });
             return NoContent();
         }
     }

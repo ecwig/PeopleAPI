@@ -8,6 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190624154012_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190624154012_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190624154228_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190624154228_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="7.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="swashbuckle.aspnetcore" Version="4.0.1" />

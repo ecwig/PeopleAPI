@@ -9,7 +9,7 @@
             Controller used to perform CRUD operations on people.
             </summary>
         </member>
-        <member name="M:PeopleApi.Controllers.PeopleController.#ctor(PeopleApi.Models.PersonContext)">
+        <member name="M:PeopleApi.Controllers.PeopleController.#ctor(MediatR.IMediator)">
             <summary>
             Constructor that seeds test data if none exists
             </summary>
@@ -41,6 +41,7 @@
              </remarks>
              <returns>The requested people</returns>
              <response code="200">Returns the people requested</response>  
+             <response code="404">If no people exist</response> 
         </member>
         <member name="M:PeopleApi.Controllers.PeopleController.Get(System.Int64)">
              <summary>
@@ -78,7 +79,7 @@
              <param name="person"></param>
              <returns>A newly created Person</returns>
              <response code="201">Returns the newly created person</response>
-             <response code="400">If the person is null</response>  
+             <response code="400">The person param is null</response>  
         </member>
         <member name="M:PeopleApi.Controllers.PeopleController.Put(System.Int64,PeopleApi.Models.Person)">
              <summary>
@@ -102,7 +103,7 @@
              <param name="person"></param>
              <returns>An updated Person</returns>
              <response code="204">Indicates that the person was updated</response>
-             <response code="400">If the person cannot be found</response>  
+             <response code="400">The person being updated does not exist</response> 
         </member>
     </members>
 </doc>

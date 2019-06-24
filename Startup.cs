@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,8 +25,10 @@ namespace PeopleApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PersonContext>(opt => opt.UseInMemoryDatabase("PeopleDirectory"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMediatR(typeof(Startup));
+            services.AddDbContext<PersonContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -34,17 +37,7 @@ namespace PeopleApi
                 {
                     Version = "v1",
                     Title = "People API",
-                    Description = "A simple ASP.NET Core WebAPI",
-                    TermsOfService = "None",
-                    Contact = new Contact
-                    {
-                        Name = "Ethan Wiggins",
-                        Email = "ethan.wiggins@centralsquare.com"
-                    },
-                    License = new License
-                    {
-                        Name = "Use under MIT",
-                    }
+                    Description = "A simple ASP.NET Core WebAPI"
                 });
 
                 // Set the comments path for the Swagger JSON and UI.

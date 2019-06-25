@@ -100,6 +100,30 @@ namespace PeopleApi.Controllers
         }
 
         /// <summary>
+        /// Gets a list of people matching the passed criteria.
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET /People/Search?firstName=Bobby
+        ///
+        /// </remarks> 
+        /// <param name="criteria">the criteria that can be used to search: firstName, lastName, address, city, state, and zip</param>
+        /// <returns>The requested people</returns>
+        /// <response code="200">Returns the people requested</response>  
+        /// <response code="404">If no people exist</response> 
+        [HttpGet("Search")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Find))]
+        public async Task<IActionResult> Find([FromRoute]SearchPeopleQuery criteria)
+        {
+            var result = await _mediator.Send(criteria);
+
+            if (result.Count == 0) return NotFound();
+
+            return Ok(result);
+        }
+
+        /// <summary>
         /// Creates a Person.
         /// </summary>
         /// <remarks>

@@ -11,7 +11,7 @@
         </member>
         <member name="M:PeopleApi.Controllers.PeopleController.#ctor(MediatR.IMediator)">
             <summary>
-            Constructor that seeds test data if none exists
+            Constructor that injects Mediator
             </summary>
         </member>
         <member name="M:PeopleApi.Controllers.PeopleController.Delete(System.Int64)">
@@ -58,6 +58,7 @@
              <response code="200">Returns the person requested</response>
              <response code="404">If the person being requested doesn't exist</response>          
         </member>
+        <!-- Badly formed XML comment ignored for member "M:PeopleApi.Controllers.PeopleController.Find(PeopleApi.Messages.Queries.SearchPeopleQuery)" -->
         <member name="M:PeopleApi.Controllers.PeopleController.Post(PeopleApi.Models.Person)">
              <summary>
              Creates a Person.
